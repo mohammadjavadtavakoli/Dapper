@@ -21,8 +21,8 @@ namespace Runner
 
         private static IContactRepository CreateRepository()
         {
-            // return new ContactRepository(_config.GetConnectionString("DefaultConnection"));
-            return new ContactRepositoryContribe(_config.GetConnectionString("DefaultConnection"));
+             return new ContactRepository(_config.GetConnectionString("DefaultConnection"));
+            //return new ContactRepositoryContribe(_config.GetConnectionString("DefaultConnection"));
         }
 
         static void delete_shouId_remove_entity(int id)
@@ -62,7 +62,8 @@ namespace Runner
         {
             var repository = CreateRepository();
 
-            var contact = repository.Find(id);
+            // var contact = repository.Find(id);
+            var contact = repository.GetFullContact(id); 
 
             Console.WriteLine("*** Get Contact ***");
             contact.Output();
@@ -83,14 +84,16 @@ namespace Runner
                 Company = "Microsoft",
                 Title = "Developer"
             };
-            // var address = new Address
-            // {
-            //     AddressType = "Home",
-            //     StreetAddress = "123 Main Street",
-            //     City = "Baltimore",
-            //     StateId = 1,
-            //     PostalCode = "22222"
-            // };
+            
+            var address = new Address
+            {
+                AddressType = "Home",
+                StreetAddress = "123 Main Street",
+                City = "Baltimore",
+                StateId = 1,
+                PostalCode = "22222"
+            };
+
             //act
             repository.Add(contact);
 
@@ -125,7 +128,12 @@ namespace Runner
             find_shouId_retrieve_existing_entity(id);
             Modify_should_update_existing_entity(id);
             delete_shouId_remove_entity(id);
-             
+
+            // var repository = CreateRepository();
+            // var mj = repository.GetFullContact(1);
+            // mj.Output();
+            Console.ReadKey();
+
         }
     }
 }

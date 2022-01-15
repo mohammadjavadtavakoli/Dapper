@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -42,6 +43,11 @@ namespace DataLayer
         public void Remove(int id)
         {
             this._db.Delete(new Contact {Id = id});
+        }
+
+        public Contact GetFullContact(int id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

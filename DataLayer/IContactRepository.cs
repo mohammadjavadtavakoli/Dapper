@@ -9,6 +9,7 @@ namespace DataLayer
         Contact Add(Contact contact);
         Contact Update(Contact contact);
         void Remove(int id);
+        Contact GetFullContact(int id);
 
     }
 }
