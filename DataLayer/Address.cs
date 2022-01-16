@@ -9,6 +9,8 @@
         public string City { get; set; }
         public int StateId { get; set; }
         public string PostalCode { get; set; }
+        public bool IsNew => this.Id == default(int);
         public bool IsDeleted { get; set; }
+        
     }
 }

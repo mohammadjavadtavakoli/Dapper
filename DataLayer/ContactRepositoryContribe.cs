@@ -49,5 +49,10 @@ namespace DataLayer
         {
             throw new NotImplementedException();
         }
+
+        public void Save(Contact contact)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -44,13 +44,17 @@ namespace Runner
             var repository = CreateRepository();
 
             // act
-            var contact = repository.Find(id);
+            var contact = repository.GetFullContact(id);
             contact.FirstName = "Bob";
-            repository.Update(contact);
+            contact.Addresses[0].StreetAddress = "456 Main Street";
+            // repository.Update(contact);
+            repository.Save(contact);
 
             // create a new repository for verification purposes
             var repository2 = CreateRepository();
-            var modifiedContact = repository.Find(id);;
+            // var modifiedContact = repository.Find(id);
+            var modifiedContact = repository.GetFullContact(id);
+
 
             // assert
             Console.WriteLine("*** Contact Modified ***");
@@ -93,9 +97,11 @@ namespace Runner
                 StateId = 1,
                 PostalCode = "22222"
             };
-
+            
+            contact.Addresses.Add(address);
             //act
-            repository.Add(contact);
+            // repository.Add(contact);
+            repository.Save(contact);
 
             //asset
             Debug.Assert(contact.Id != 0);
@@ -115,7 +121,7 @@ namespace Runner
 
             //assert
             Console.WriteLine($"Count: {contacts.Count}");
-            Debug.Assert(contacts.Count == 6);
+            //Debug.Assert(contacts.Count == 6);
             contacts.Output();
         }
 
@@ -127,6 +133,7 @@ namespace Runner
             var id = Insert_ShouId_assign_identity_to_new_entity();
             find_shouId_retrieve_existing_entity(id);
             Modify_should_update_existing_entity(id);
+            
             delete_shouId_remove_entity(id);
 
             // var repository = CreateRepository();
